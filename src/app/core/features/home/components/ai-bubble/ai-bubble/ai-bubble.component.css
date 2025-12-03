@@ -1,0 +1,30 @@
+.ai-orb {
+  /* Radial gradient, wave style */
+  background: radial-gradient(
+    circle at 60% 70%,
+    rgba(255, 255, 255, 1) 0%,
+    /* White center */ rgba(159, 178, 255, 0.8) 5%,
+    rgba(159, 178, 255, 0.8) 5%,
+    /* Some bright */ rgba(100, 100, 255, 0.5) 30%,
+    /* Wave */ rgba(133, 45, 227, 0.4) 50%,
+    rgba(100, 25, 126, 0.3) 70%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+
+  /* etereo */
+  filter: blur(10px) contrast(1.4) saturate(1.5);
+  box-shadow: 0 0 80px rgba(100, 100, 255, 0.6);
+
+  /* rotation */
+  animation: rotateOrb 15s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rotateOrb {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
