@@ -48,32 +48,11 @@
             Sugerencias de uso
           </h3>
           <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            <app-suggestion-bubble> </app-suggestion-bubble>
-            <!-- <button
-              class="px-5 py-2.5 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-md transition duration-200 ease-in-out"
-            >
-              Extender mi reservación
-            </button>
-            <button
-              class="px-5 py-2.5 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-md transition duration-200 ease-in-out"
-            >
-              No llegó mi factura
-            </button>
-            <button
-              class="px-5 py-2.5 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-md transition duration-200 ease-in-out"
-            >
-              ¿Qué servicios ofrece el hotel?
-            </button>
-            <button
-              class="px-5 py-2.5 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-md transition duration-200 ease-in-out"
-            >
-              Horarios de check-in y check-out
-            </button>
-            <button
-              class="px-5 py-2.5 text-base font-medium text-white bg-red-500 rounded-full hover:bg-pink-600 shadow-md transition duration-200 ease-in-out"
-            >
-              Pedir ayuda a un encargado
-            </button> -->
+            @for(suggestion of defaultSuggestions; track $index) {
+            <app-suggestion-bubble
+              [suggestionText]="suggestion"
+            ></app-suggestion-bubble>
+            }
           </div>
         </div>
       </main>
