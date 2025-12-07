@@ -34,8 +34,17 @@
           >
             Hola, soy tu asistente virtual.
           </h1>
-          <h2 class="text-3xl md:text-4xl font-light text-gray-600 mt-4">
+          <h2
+            class="text-3xl md:text-4xl font-light text-gray-600 mt-4"
+            *ngIf="isStarted"
+          >
             ¿En qué puedo ayudarte hoy?
+          </h2>
+          <h2
+            class="text-3xl md:text-4xl font-light text-gray-600 mt-4"
+            *ngIf="!isStarted"
+          >
+            Presiona "Iniciar" para comenzar.
           </h2>
         </div>
 
@@ -43,7 +52,16 @@
           <app-ai-bubble> </app-ai-bubble>
         </div>
 
-        <div class="mt-2 flex flex-col items-center">
+        <!-- Start button -->
+        <div class="mt-5 items-center flex justify-center" *ngIf="!isStarted">
+          <button
+            class="start-button px-5 py-2.5 text-3xl md:text-4xl font-light text-white bg-[#F26A44] rounded-full hover:bg-indigo-600 shadow-md transition duration-200 ease-in-out"
+          >
+            Iniciar
+          </button>
+        </div>
+
+        <div class="mt-2 flex flex-col items-center" *ngIf="isStarted">
           <h3 class="text-xl font-semibold text-center mb-6 text-gray-800">
             Sugerencias de uso
           </h3>
