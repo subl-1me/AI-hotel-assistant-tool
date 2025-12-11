@@ -3,10 +3,16 @@ import { SuggestionBubbleComponent } from '../../components/suggestion-bubble/su
 import { AiBubbleComponent } from '../../components/ai-bubble/ai-bubble/ai-bubble.component';
 import { DEFAULT_ORB_SUGGESTIONS } from '../../../../shared/utils/constants';
 import { NgIf } from '@angular/common';
+import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [SuggestionBubbleComponent, AiBubbleComponent, NgIf],
+  imports: [
+    SuggestionBubbleComponent,
+    AiBubbleComponent,
+    NgIf,
+    AudioRecorderComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
@@ -20,5 +26,9 @@ export class HomePageComponent {
 
   public toggleHasStarted(): void {
     this.isStarted = !this.isStarted;
+  }
+
+  public onAudioTranscript(transcript: string): void {
+    console.log('Transcripción recibida:', transcript);
   }
 }

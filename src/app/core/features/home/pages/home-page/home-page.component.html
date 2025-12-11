@@ -54,11 +54,9 @@
 
         <!-- Start button -->
         <div class="mt-5 items-center flex justify-center" *ngIf="!isStarted">
-          <button
-            class="start-button px-5 py-2.5 text-3xl md:text-4xl font-light text-white bg-[#F26A44] rounded-full hover:bg-indigo-600 shadow-md transition duration-200 ease-in-out"
-          >
-            Iniciar
-          </button>
+          <app-audio-recorder
+            (audioTranscript)="onAudioTranscript($event)"
+          ></app-audio-recorder>
         </div>
 
         <div class="mt-2 flex flex-col items-center" *ngIf="isStarted">

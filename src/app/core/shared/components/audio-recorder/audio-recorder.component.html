@@ -1,0 +1,81 @@
+<!-- audio-recorder.component.html -->
+<div class="audio-recorder-container">
+  <!-- Estado y controles -->
+  <div class="controls">
+    <!-- Indicador de grabación -->
+    <div class="recording-indicator" *ngIf="isRecording">
+      <div class="pulse"></div>
+      <span>Grabando... {{ recordingTime }}s</span>
+    </div>
+
+    <!-- Botones de control -->
+    <div class="buttons">
+      <button
+        *ngIf="!isRecording"
+        (click)="startRecording()"
+        class="btn-record"
+        [disabled]="loading"
+      >
+        🎤 Iniciar Grabación
+      </button>
+
+      <button
+        *ngIf="isRecording"
+        (click)="stopAndSend()"
+        class="btn-stop"
+        [disabled]="loading"
+      >
+        ⏹️ Detener y Enviar
+      </button>
+
+      <button
+        (click)="recordFixedDuration()"
+        class="btn-auto"
+        [disabled]="isRecording || loading"
+      >
+        ⏱️ Grabar 5s (Automático)
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <span>Procesando audio...</span>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error" class="error">❌ {{ error }}</div>
+  </div>
+
+  <!-- Previsualización de audio -->
+  <div *ngIf="audioUrl && !loading" class="audio-preview">
+    <h4>Audio grabado:</h4>
+    <audio [src]="audioUrl" controls></audio>
+    <button (click)="clearAudio()" class="btn-clear">Limpiar</button>
+  </div>
+
+  <!-- Resultados del procesamiento -->
+  <div *ngIf="response && !loading" class="results">
+    <h4>Resultado:</h4>
+
+    <div class="transcription">
+      <strong>Texto reconocido:</strong>
+      <p>{{ response.text }}</p>
+    </div>
+
+    <div *ngIf="response.intent" class="intent">
+      <strong>Intención detectada:</strong>
+      <span class="intent-badge">{{ response.intent }}</span>
+    </div>
+
+    <div *ngIf="response.entities?.length" class="entities">
+      <strong>Entidades encontradas:</strong>
+      <ul>
+        <li *ngFor="let entity of response.entities">
+          <span class="entity-text">{{ entity.text }}</span>
+          <span class="entity-label">{{ entity.label }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
