@@ -1,11 +1,10 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ai-bubble',
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ai-bubble.component.html',
-  styleUrl: './ai-bubble.component.css'
+  styleUrl: './ai-bubble.component.css',
 })
-export class AiBubbleComponent {
-
-}
+export class AiBubbleComponent {}

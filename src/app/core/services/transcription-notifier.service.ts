@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class IntentService {
+export class TranscriptionNotifier {
   private notificationSubject = new Subject<string>();
 
   public notification$ = this.notificationSubject.asObservable();
