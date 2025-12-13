@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AIModelService } from '../../../services/ai-model.service';
-import { IntentService } from '../../../services/transcription-notifier.service';
+import { TranscriptionNotifier } from '../../../services/transcription-notifier.service';
 
 @Component({
   selector: 'app-testing-toolbar',
@@ -11,14 +11,14 @@ import { IntentService } from '../../../services/transcription-notifier.service'
 export class TestingToolbarComponent {
   constructor(
     private aiModelService: AIModelService,
-    private intentService: IntentService
+    private transcriptionNotifier: TranscriptionNotifier
   ) {}
 
   onTestButtonClick(text: string): void {
     this.aiModelService.sendTextToModel(text).subscribe((response) => {
       const { success, result } = response;
       const { intent, entities, intent_confidence, text } = result;
-      this.intentService.emitNotification(text);
+      this.transcriptionNotifier.emitNotification(text);
     });
   }
 }

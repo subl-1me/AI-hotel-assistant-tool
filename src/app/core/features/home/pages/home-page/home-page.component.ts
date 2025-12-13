@@ -5,7 +5,7 @@ import { DEFAULT_ORB_SUGGESTIONS } from '../../../../shared/utils/constants';
 import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
 import { Subscription } from 'rxjs';
-import { IntentService } from '../../../../services/transcription-notifier.service';
+import { TranscriptionNotifier } from '../../../../services/transcription-notifier.service';
 
 @Component({
   selector: 'app-home-page',
@@ -28,14 +28,14 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.intentService.notification$.subscribe((notification) => {
+      this.transcriptionNotifier.notification$.subscribe((notification) => {
         this.hasTranscription = true;
         this.recievedTranscription = notification;
       })
     );
   }
 
-  constructor(private intentService: IntentService) {
+  constructor(private transcriptionNotifier: TranscriptionNotifier) {
     this.isStarted = false;
   }
 

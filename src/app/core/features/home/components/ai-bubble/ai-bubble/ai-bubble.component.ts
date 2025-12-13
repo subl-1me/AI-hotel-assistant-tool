@@ -1,9 +1,8 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ai-bubble',
-  imports: [NgIf],
+  imports: [],
   templateUrl: './ai-bubble.component.html',
   styleUrl: './ai-bubble.component.css',
 })

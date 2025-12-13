@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IntentService } from './transcription-notifier.service';
+import { TranscriptionNotifier } from './transcription-notifier.service';
 
-describe('IntentService', () => {
-  let service: IntentService;
+describe('TranscriptionNotifierService', () => {
+  let service: TranscriptionNotifier;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IntentService);
+    service = TestBed.inject(TranscriptionNotifier);
   });
 
   it('should be created', () => {
