@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AIModelService } from '../../../services/ai-model.service';
-import { IntentService } from '../../../services/intent.service';
+import { IntentService } from '../../../services/transcription-notifier.service';
 
 @Component({
   selector: 'app-testing-toolbar',

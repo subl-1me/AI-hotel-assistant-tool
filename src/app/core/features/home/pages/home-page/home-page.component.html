@@ -30,9 +30,17 @@
       >
         <div class="mx-auto text-center">
           <h1
+            *ngIf="!hasTranscription"
             class="text-5xl md:text-5xl font-extrabold tracking-tight text-gray-900"
           >
             Hola, soy tu asistente virtual.
+          </h1>
+          <h1
+            *ngIf="hasTranscription"
+            class="text-5xl md:text-5xl font-extrabold tracking-tight text-gray-900 animate-zoom-in"
+            [class.animate-zoom-in]="hasTranscription"
+          >
+            {{ recievedTranscription }}
           </h1>
           <h2
             class="text-3xl md:text-4xl font-light text-gray-600 mt-4"
