@@ -18,7 +18,12 @@ export class TestingToolbarComponent {
     this.aiModelService.sendTextToModel(text).subscribe((response) => {
       const { success, result } = response;
       const { intent, entities, intent_confidence, text } = result;
-      this.transcriptionNotifier.emitNotification(text);
+      this.transcriptionNotifier.emitNotification({
+        intent,
+        entities,
+        intent_confidence,
+        text,
+      });
     });
   }
 }

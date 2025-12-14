@@ -12,7 +12,7 @@ export class TranscriptionNotifier {
 
   constructor() {}
 
-  emitNotification(text: string): void {
-    this.notificationSubject.next(text);
+  emitNotification(data: any): void {
+    this.notificationSubject.next(data);
   }
 }

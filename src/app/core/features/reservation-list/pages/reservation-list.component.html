@@ -1,0 +1,469 @@
+<div class="relative min-h-screen overflow-hidden">
+  <div class="absolute top-0 right-0 w-full h-full">
+    <div class="absolute inset-0 bg-white opacity-40 mix-blend-screen"></div>
+    <div
+      class="absolute top-0 right-0 w-[80%] h-[120%] bg-gradient-to-br from-purple-400 via-blue-400 to-pink-400 opacity-60 blur-3xl rounded-full transform translate-x-1/4 -translate-y-1/4"
+    ></div>
+    <div
+      class="absolute top-0 right-0 w-[60%] h-[80%] bg-gradient-to-br from-blue-300 via-indigo-500 to-pink-500 opacity-40 blur-3xl transform translate-x-1/2 -translate-y-1/2"
+    ></div>
+  </div>
+
+  <div class="relative z-10">
+    <header class="p-4 md:p-6 lg:p-8">
+      <nav class="flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center space-x-2">
+          <span class="logo-icon text-black"></span>
+          <div>
+            <a href="#" class="text-xl font-semibold text-black"
+              >Hotel Sueños Lúcidos</a
+            >
+            <p class="text-xs text-gray-600">Descanso de otra dimensión</p>
+          </div>
+        </div>
+        <div>
+          <button
+            class="text-sm font-medium text-gray-700 hover:text-gray-900 transition duration-150"
+          >
+            Volver al inicio
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-8 pb-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto text-center mb-8">
+        <h1
+          class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900"
+        >
+          Mis Reservaciones
+        </h1>
+        <h2 class="text-xl md:text-2xl font-light text-gray-600 mt-4">
+          Revisa el estado de todas tus reservas
+        </h2>
+      </div>
+
+      <!-- Lista de reservaciones -->
+      <div class="space-y-6">
+        <!-- Encabezado de la lista -->
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-900">
+            5 reservaciones encontradas
+          </h3>
+          <div class="text-sm text-gray-600">Actualizado hace 5 minutos</div>
+        </div>
+
+        <!-- Reservación 1 - Confirmada -->
+        <div
+          class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
+              >
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    Suite Premium Vista al Mar
+                  </h4>
+                  <p class="text-gray-600">Ana García Rodríguez</p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                    >
+                      Confirmada
+                    </span>
+                    <span class="ml-2 text-sm text-gray-500"
+                      >2 adultos • 1 niño</span
+                    >
+                  </div>
+                </div>
+                <div class="mt-2 md:mt-0 text-right">
+                  <p class="text-lg font-bold text-[#F26A44]">$1,750.00 MXN</p>
+                  <p class="text-sm text-gray-500">#HS-2023-7894</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-500">Check-in</p>
+                  <p class="font-medium text-gray-900">15 Nov 2023 • 3:00 PM</p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Check-out</p>
+                  <p class="font-medium text-gray-900">
+                    18 Nov 2023 • 11:00 AM
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Duración</p>
+                  <p class="font-medium text-gray-900">3 noches</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
+              >
+                Ver detalles
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
+              >
+                Modificar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reservación 2 - Pendiente de pago -->
+        <div
+          class="reservation-card pending bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
+              >
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    Habitación Standard
+                  </h4>
+                  <p class="text-gray-600">Carlos Mendoza López</p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"
+                    >
+                      Pendiente de pago
+                    </span>
+                    <span class="ml-2 text-sm text-gray-500">1 adulto</span>
+                  </div>
+                </div>
+                <div class="mt-2 md:mt-0 text-right">
+                  <p class="text-lg font-bold text-[#F26A44]">$850.00 MXN</p>
+                  <p class="text-sm text-gray-500">#HS-2023-7895</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-500">Check-in</p>
+                  <p class="font-medium text-gray-900">20 Nov 2023 • 3:00 PM</p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Check-out</p>
+                  <p class="font-medium text-gray-900">
+                    22 Nov 2023 • 11:00 AM
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Duración</p>
+                  <p class="font-medium text-gray-900">2 noches</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
+              >
+                Completar pago
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reservación 3 - Confirmada -->
+        <div
+          class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
+              >
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    Suite Ejecutiva
+                  </h4>
+                  <p class="text-gray-600">Ana García Rodríguez</p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                    >
+                      Confirmada
+                    </span>
+                    <span class="ml-2 text-sm text-gray-500"
+                      >2 adultos, 1 niño</span
+                    >
+                  </div>
+                </div>
+                <div class="mt-2 md:mt-0 text-right">
+                  <p class="text-lg font-bold text-[#F26A44]">$2,100.00 MXN</p>
+                  <p class="text-sm text-gray-500">#HS-2023-7896</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-500">Check-in</p>
+                  <p class="font-medium text-gray-900">05 Dic 2023 • 3:00 PM</p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Check-out</p>
+                  <p class="font-medium text-gray-900">
+                    10 Dic 2023 • 11:00 AM
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Duración</p>
+                  <p class="font-medium text-gray-900">5 noches</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
+              >
+                Ver detalles
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
+              >
+                Modificar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reservación 4 - Completada -->
+        <div
+          class="reservation-card completed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
+              >
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    Habitación Doble Deluxe
+                  </h4>
+                  <p class="text-gray-600">Roberto Sánchez Jiménez</p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                    >
+                      Completada
+                    </span>
+                    <span class="ml-2 text-sm text-gray-500">2 adultos</span>
+                  </div>
+                </div>
+                <div class="mt-2 md:mt-0 text-right">
+                  <p class="text-lg font-bold text-[#F26A44]">$1,200.00 MXN</p>
+                  <p class="text-sm text-gray-500">#HS-2023-7893</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-500">Check-in</p>
+                  <p class="font-medium text-gray-900">10 Oct 2023 • 3:00 PM</p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Check-out</p>
+                  <p class="font-medium text-gray-900">
+                    12 Oct 2023 • 11:00 AM
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Duración</p>
+                  <p class="font-medium text-gray-900">2 noches</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
+              >
+                Ver detalles
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
+              >
+                Solicitar factura
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reservación 5 - Cancelada -->
+        <div
+          class="reservation-card cancelled bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
+              >
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    Suite Presidencial
+                  </h4>
+                  <p class="text-gray-600">María González Ruiz</p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800"
+                    >
+                      Cancelada
+                    </span>
+                    <span class="ml-2 text-sm text-gray-500">4 adultos</span>
+                  </div>
+                </div>
+                <div class="mt-2 md:mt-0 text-right">
+                  <p class="text-lg font-bold text-[#F26A44]">$3,500.00 MXN</p>
+                  <p class="text-sm text-gray-500">#HS-2023-7892</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-500">Check-in</p>
+                  <p class="font-medium text-gray-900">25 Nov 2023 • 3:00 PM</p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Check-out</p>
+                  <p class="font-medium text-gray-900">
+                    28 Nov 2023 • 11:00 AM
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-500">Duración</p>
+                  <p class="font-medium text-gray-900">3 noches</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
+              >
+                Ver detalles
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
+              >
+                Volver a reservar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-100">
+        <div class="flex items-start">
+          <svg
+            class="w-6 h-6 text-blue-500 mt-0.5 mr-4 flex-shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <div>
+            <h4 class="text-lg font-semibold text-blue-800 mb-2">
+              ¿Necesitas ayuda con tus reservaciones?
+            </h4>
+            <p class="text-blue-700 text-sm">
+              Si tienes alguna pregunta sobre el estado de tu reserva,
+              modificación de fechas o necesitas asistencia especial, nuestro
+              equipo de atención al cliente está disponible 24/7 para ayudarte.
+            </p>
+            <div class="mt-3 flex space-x-4">
+              <button
+                class="text-sm text-[#F26A44] font-medium hover:text-indigo-600 transition duration-150"
+              >
+                Contactar soporte
+              </button>
+              <button
+                class="text-sm text-[#F26A44] font-medium hover:text-indigo-600 transition duration-150"
+              >
+                Preguntas frecuentes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Panel flotante inferior -->
+  <div
+    class="fixed bottom-0 left-0 right-0 floating-panel bg-white/80 border-t border-gray-200 z-20"
+  >
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div
+              class="h-3 w-3 bg-[#F26A44] rounded-full animate-pulse-listening"
+            ></div>
+            <div
+              class="absolute inset-0 h-3 w-3 bg-[#F26A44] rounded-full animate-ping opacity-75"
+            ></div>
+          </div>
+          <p class="text-sm font-medium text-gray-700">
+            Asistente escuchando...
+          </p>
+        </div>
+
+        <div class="flex space-x-2">
+          <button
+            class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition duration-150"
+          >
+            "Ver detalles Suite Premium"
+          </button>
+          <button
+            class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition duration-150"
+          >
+            "Completar pago Standard"
+          </button>
+          <button
+            class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition duration-150"
+          >
+            "Modificar Suite Ejecutiva"
+          </button>
+          <button
+            class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition duration-150"
+          >
+            "Contactar soporte"
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

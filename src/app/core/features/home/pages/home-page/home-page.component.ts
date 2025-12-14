@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
 import { Subscription } from 'rxjs';
 import { TranscriptionNotifier } from '../../../../services/transcription-notifier.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -35,7 +36,10 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-  constructor(private transcriptionNotifier: TranscriptionNotifier) {
+  constructor(
+    private transcriptionNotifier: TranscriptionNotifier,
+    private router: Router
+  ) {
     this.isStarted = false;
   }
 
