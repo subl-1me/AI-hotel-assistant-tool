@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
 import { Subscription } from 'rxjs';
 import { TranscriptionNotifier } from '../../../../services/transcription-notifier.service';
-import { Router } from '@angular/router';
+import { IntentRoutingService } from '../../../../services/intent-routing.service';
 
 @Component({
   selector: 'app-home-page',
@@ -29,16 +29,17 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.transcriptionNotifier.notification$.subscribe((notification) => {
+      this.transcriptionNotifier.notification$.subscribe((intent) => {
         this.hasTranscription = true;
-        this.recievedTranscription = notification;
+        this.recievedTranscription = intent.text;
+        this.intentRoutingService.routeBasedOnIntent(intent);
       })
     );
   }
 
   constructor(
     private transcriptionNotifier: TranscriptionNotifier,
-    private router: Router
+    private intentRoutingService: IntentRoutingService
   ) {
     this.isStarted = false;
   }

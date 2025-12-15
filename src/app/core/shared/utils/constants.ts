@@ -8,3 +8,21 @@ export const DEFAULT_ORB_SUGGESTIONS: string[] = [
   'Facturación de mi estancia',
   'Solicitar ayuda a un empleado',
 ];
+
+export const IntentsUrls = {
+  PAY_RESERVATION: '/pay-reservation',
+  SEARCH_RESERVATION: '/reservation-list',
+  MODIFY_RESERVATION: '/modify-reservation',
+  CANCEL_RESERVATION: '/cancel-reservation',
+};
+
+export const IntentKeys = {
+  PAY_RESERVATION: 'PAY_RESERVATION',
+  SEARCH_RESERVATION: 'SEARCH_RESERVATION',
+  MODIFY_RESERVATION: 'MODIFY_RESERVATION',
+  CANCEL_RESERVATION: 'CANCEL_RESERVATION',
+};
+
+export const EntityNames = {
+  GUEST_NAME: 'GUEST_NAME',
+};
