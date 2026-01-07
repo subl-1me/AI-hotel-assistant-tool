@@ -26,3 +26,14 @@ export const IntentKeys = {
 export const EntityNames = {
   GUEST_NAME: 'GUEST_NAME',
 };
+
+export const RESERVATION_PAYMENT_STATUS = [
+  'Pendiente de pago',
+  'Pagos parciales',
+  'Noche en curso pagada',
+  'Prepagada',
+];
+
+export const PREPAID_PAYMENTS = ['Tarjeta virtual', 'Cupon', 'Puntos'];
+
+export const ROOM_TYPES = ['Doble', 'Sencilla', 'Suite'];
