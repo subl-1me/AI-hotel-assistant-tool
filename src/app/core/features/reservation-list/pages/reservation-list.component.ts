@@ -4,10 +4,11 @@ import { ReservationService } from '../../../services/sqlite-testing/reservation
 import Reservation from '../../../models/Reservation';
 import { DatePipe, NgFor } from '@angular/common';
 import Rate from '../../../models/Rate';
+import { RESERVATION_STATUES } from '../../../shared/utils/constants';
 
 @Component({
   selector: 'app-reservation-list',
-  imports: [NgFor, DatePipe],
+  imports: [DatePipe],
   templateUrl: './reservation-list.component.html',
   styleUrl: './reservation-list.component.css',
 })
@@ -35,6 +36,25 @@ export class ReservationListComponent {
     ).toFixed(2);
   }
 
+  public getReservationStatusLabel(status: string): string {
+    return (
+      RESERVATION_STATUES[status as keyof typeof RESERVATION_STATUES] || status
+    );
+  }
+
+  public getReservationRoomTypeLabel(roomType: string): string {
+    switch (roomType) {
+      case 'SINGLE':
+        return 'Sencilla';
+      case 'DOUBLE':
+        return 'Doble';
+      case 'SUITE':
+        return 'Suite';
+      default:
+        return roomType;
+    }
+  }
+
   private getReservationLocator(): void {
     // const activateLocators = this.activatedRouter.snapshot.paramMap.keys;
     // console.log(activateLocators);
@@ -49,41 +69,37 @@ export class ReservationListComponent {
       this.activatedRouter.snapshot.queryParamMap.get('guestName');
     if (guestName) {
       // search for guest name
-      const cleanNames = guestName.replace('-', ' ');
-      const reservation = this.reservationService
-        .searchByGuestName(cleanNames)
-        .subscribe({
-          next: (response) => {
-            // map to reservation
-            this.reservations = [
-              ...response.map((item: any) => {
-                return {
-                  id: item.id,
-                  reservationId: item.reservationId,
-                  rates: JSON.parse(item.rates), // always stored as string
-                  confirmation: item.confirmation,
-                  room: item.room,
-                  roomType: item.roomType,
-                  guest: {
-                    guestId: item.g_id,
-                    email: item.g_email,
-                    names: item.g_names,
-                    surnames: item.g_surnames,
-                    phone: item.g_phone,
-                  },
-                  dateIn: item.dateIn,
-                  dateOut: item.dateOut,
-                  status: item.status,
-                  paymentStatus: item.paymentStatus,
-                };
-              }),
-            ];
+      this.reservationService.searchByGuestName(guestName).subscribe({
+        next: (response) => {
+          // map to reservation
+          this.reservations = [
+            ...response.map((item: any) => {
+              return {
+                id: item.id,
+                reservationId: item.reservationId,
+                rates: JSON.parse(item.rates), // always stored as string
+                confirmation: item.confirmation,
+                room: item.room,
+                roomType: item.roomType,
+                guest: {
+                  guestId: item.g_id,
+                  email: item.g_email,
+                  names: item.g_names,
+                  surnames: item.g_surnames,
+                  phone: item.g_phone,
+                },
+                dateIn: item.dateIn,
+                dateOut: item.dateOut,
+                status: item.status,
+                paymentStatus: item.paymentStatus,
+              };
+            }),
+          ];
 
-            console.log(this.reservations);
-            this.displayedReservations = [...this.reservations];
-          },
-          error: (error) => {},
-        });
+          this.displayedReservations = [...this.reservations];
+        },
+        error: (error) => {},
+      });
     }
   }
 }

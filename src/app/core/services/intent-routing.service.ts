@@ -46,7 +46,7 @@ export class IntentRoutingService {
 
         break;
       default:
-        console.log('invalid router entry.');
+        console.log(`No routing defined for intent: ${intent}`);
         break;
     }
   }

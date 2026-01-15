@@ -36,10 +36,11 @@
         <h1
           class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900"
         >
-          Mis Reservaciones
+          Reservaciones encontradas
         </h1>
-        <h2 class="text-xl md:text-2xl font-light text-gray-600 mt-4">
-          Revisa el estado de todas tus reservas
+        <h2 class="text-xl md:text-2xl font-light text-gray-700 mt-4">
+          Selecciona o di el comando de voz para gestionar una o mas
+          reservaciones de tu propiedad
         </h2>
       </div>
 
@@ -50,7 +51,6 @@
           <h3 class="text-2xl font-bold text-gray-900">
             {{ displayedReservations.length }} reservaciones encontradas
           </h3>
-          <!-- <div class="text-sm text-gray-600">Actualizado hace 5 minutos</div> -->
         </div>
 
         @for(reservation of displayedReservations; track $index){
@@ -58,43 +58,41 @@
         <div
           class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
         >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <div class="flex-1">
-              <div
-                class="flex flex-col md:flex-row md:items-start md:justify-between mb-4"
-              >
-                <div>
-                  <h4 class="text-xl font-semibold text-gray-900">
-                    Habitación {{ reservation.roomType }}
-                  </h4>
-                  <p class="text-gray-600">
-                    {{ reservation.guest.names }}
-                    {{ reservation.guest.surnames }}
-                  </p>
-                  <div class="flex items-center mt-1">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
-                    >
-                      {{ reservation.status }}
-                    </span>
-                    <span class="ml-2 text-sm text-gray-500"
-                      >2 adultos • 1 niño</span
-                    >
-                  </div>
-                </div>
-                <div class="mt-2 md:mt-0 text-right">
-                  <p class="text-lg font-bold text-[#F26A44]">
-                    ${{ reservation.rates.total.toFixed(2) }} MXN
-                  </p>
-                  <p class="text-sm text-gray-500">
+          <div class="grid grid-cols-3 gap-4 text-sm">
+            <div>
+              <div>
+                <h4 class="text-xl font-semibold text-gray-900">
+                  {{ reservation.guest.names }}
+                  {{ reservation.guest.surnames }}
+                </h4>
+                <p class="text-gray-600">
+                  Habitación
+                  {{ getReservationRoomTypeLabel(reservation.roomType) }}
+                  <span class="text-sm text-gray-500">
+                    ~ 2 adultos • 1 niño</span
+                  >
+                </p>
+                <div class="flex items-center mt-1">
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                  >
+                    #{{ $index + 1 }}
+                  </span>
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                  >
+                    {{ getReservationStatusLabel(reservation.status) }}
+                  </span>
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                  >
                     #{{ reservation.confirmation }}
-                  </p>
+                  </span>
                 </div>
               </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            </div>
+            <div>
+              <div class="grid grid-cols-4 text-sm mt-3">
                 <div>
                   <p class="text-gray-500">Check-in</p>
                   <p class="font-medium text-gray-900">
@@ -113,25 +111,21 @@
                 </div>
               </div>
             </div>
+            <div class="mb-auto mt-auto">
+              <p class="text-gray-500">Total de estancia</p>
 
-            <div class="mt-4 lg:mt-0 lg:ml-6 flex space-x-3">
-              <button
-                class="px-4 py-2 text-sm font-medium text-white bg-[#F26A44] rounded-lg hover:bg-indigo-600 transition duration-150"
-              >
-                Ver detalles
-              </button>
-              <button
-                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150"
-              >
-                Modificar
-              </button>
+              <p class="text-lg font-bold text-[#F26A44] inline">
+                ${{ reservation.rates.total.toFixed(2) }} MXN
+              </p>
+              <p class="text-xs italic inline text-gray-600">
+                (Impuestos incluidos)
+              </p>
             </div>
           </div>
         </div>
         }
       </div>
 
-      <!-- Información adicional -->
       <div class="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-100">
         <div class="flex items-start">
           <svg
@@ -174,7 +168,6 @@
     </main>
   </div>
 
-  <!-- Panel flotante inferior -->
   <div
     class="fixed bottom-0 left-0 right-0 floating-panel bg-white/80 border-t border-gray-200 z-20"
   >

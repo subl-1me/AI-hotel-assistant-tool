@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AIModelService {
 
   sendTextToModel(text: string): Observable<any> {
     return this.http.post(
-      'http://localhost:5000/api/process-text',
+      environment.TEXT_MODEL_PROCESSING_API_URL,
       { text },
       {
         reportProgress: true,

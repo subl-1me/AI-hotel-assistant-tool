@@ -37,3 +37,11 @@ export const RESERVATION_PAYMENT_STATUS = [
 export const PREPAID_PAYMENTS = ['Tarjeta virtual', 'Cupon', 'Puntos'];
 
 export const ROOM_TYPES = ['Doble', 'Sencilla', 'Suite'];
+
+export const RESERVATION_STATUES = {
+  CONFIRMED: 'CONFIRMADA',
+  CHECKED_IN: 'CHECK-IN',
+  CHECKED_OUT: 'CHECK-OUT',
+  CANCELLED: 'CANCELADA',
+  NO_SHOW: 'NO SHOW',
+};

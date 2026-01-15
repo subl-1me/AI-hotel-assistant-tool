@@ -7,6 +7,7 @@ import { AudioRecorderComponent } from '../../../../shared/components/audio-reco
 import { Subscription } from 'rxjs';
 import { TranscriptionNotifier } from '../../../../services/transcription-notifier.service';
 import { IntentRoutingService } from '../../../../services/intent-routing.service';
+import { AIModelService } from '../../../../services/ai-model.service';
 
 @Component({
   selector: 'app-home-page',
@@ -39,7 +40,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private transcriptionNotifier: TranscriptionNotifier,
-    private intentRoutingService: IntentRoutingService
+    private intentRoutingService: IntentRoutingService,
+    private aiModelService: AIModelService
   ) {
     this.isStarted = false;
   }
@@ -49,6 +51,21 @@ export class HomePageComponent implements OnInit {
   }
 
   public onAudioTranscript(transcript: string): void {
-    console.log('Transcripción recibida:', transcript);
+    this.hasTranscription = true;
+    // send text to model
+    this.aiModelService.sendTextToModel(transcript).subscribe({
+      next: (response: any) => {
+        console.log('Received intent from AI model:', response);
+        this.transcriptionNotifier.emitNotification({
+          entities: response.result.entities,
+          intent: response.result.intent,
+          text: response.result.text,
+          intent_confidence: response.result.intent_confidence,
+        });
+      },
+      error: (errd) => {
+        console.log('Error receiving intent from AI model:', errd);
+      },
+    });
   }
 }

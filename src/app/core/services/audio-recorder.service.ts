@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -80,7 +81,7 @@ export class AudioRecorderService {
 
     formData.append('audio', audioBlob, filename);
 
-    return this.http.post('http://localhost:5000/api/process-audio', formData, {
+    return this.http.post(environment.VOICE_PROCESSING_API_URL, formData, {
       reportProgress: true,
       responseType: 'json',
     });
