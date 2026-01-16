@@ -20,7 +20,6 @@ export class IntentRoutingService {
       (item) => intentObj.intent === item
     );
 
-    console.log(intentObj);
     const { entities, intent, intent_confidence, text } = intentObj;
     switch (validIntent) {
       // case SEARCHING FOR RESERVATION, CHECK-IN,

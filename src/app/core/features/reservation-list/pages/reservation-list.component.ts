@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReservationService } from '../../../services/sqlite-testing/reservation.service';
 import Reservation from '../../../models/Reservation';
-import { DatePipe, NgFor } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import Rate from '../../../models/Rate';
 import { RESERVATION_STATUES } from '../../../shared/utils/constants';
+import { AiAssistantListenerComponent } from '../../../shared/components/ai-assistant-listener/ai-assistant-listener.component';
 
 @Component({
   selector: 'app-reservation-list',
-  imports: [DatePipe],
+  imports: [DatePipe, AiAssistantListenerComponent],
   templateUrl: './reservation-list.component.html',
   styleUrl: './reservation-list.component.css',
 })
@@ -18,7 +19,7 @@ export class ReservationListComponent {
 
   constructor(
     private activatedRouter: ActivatedRoute,
-    private reservationService: ReservationService
+    private reservationService: ReservationService,
   ) {
     this.reservations = [];
     this.displayedReservations = [];
@@ -32,7 +33,7 @@ export class ReservationListComponent {
     return Number(
       rates.reduce((accum, current) => {
         return (accum += current.total);
-      }, 0)
+      }, 0),
     ).toFixed(2);
   }
 

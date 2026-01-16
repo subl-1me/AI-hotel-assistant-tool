@@ -45,3 +45,10 @@ export const RESERVATION_STATUES = {
   CANCELLED: 'CANCELADA',
   NO_SHOW: 'NO SHOW',
 };
+
+export const AI_CONTEXT_ROUTES = [
+  '/reservation-list',
+  '/pay-reservation',
+  '/modify-reservation',
+  '/cancel-reservation',
+];
