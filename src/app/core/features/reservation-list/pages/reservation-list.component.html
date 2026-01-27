@@ -53,76 +53,76 @@
           </h3>
         </div>
 
-        @for(reservation of displayedReservations; track $index){
-        <!-- Reservación 1 - Confirmada -->
-        <div
-          class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
-        >
-          <div class="grid grid-cols-3 gap-4 text-sm">
-            <div>
+        @for (reservation of displayedReservations; track $index) {
+          <!-- Reservación 1 - Confirmada -->
+          <div
+            class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+          >
+            <div class="grid grid-cols-3 gap-4 text-sm">
               <div>
-                <h4 class="text-xl font-semibold text-gray-900">
-                  {{ reservation.guest.names }}
-                  {{ reservation.guest.surnames }}
-                </h4>
-                <p class="text-gray-600">
-                  Habitación
-                  {{ getReservationRoomTypeLabel(reservation.roomType) }}
-                  <span class="text-sm text-gray-500">
-                    ~ 2 adultos • 1 niño</span
-                  >
-                </p>
-                <div class="flex items-center mt-1">
-                  <span
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
-                  >
-                    #{{ $index + 1 }}
-                  </span>
-                  <span
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
-                  >
-                    {{ getReservationStatusLabel(reservation.status) }}
-                  </span>
-                  <span
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
-                  >
-                    #{{ reservation.confirmation }}
-                  </span>
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">
+                    {{ reservation.guest.names }}
+                    {{ reservation.guest.surnames }}
+                  </h4>
+                  <p class="text-gray-600">
+                    Habitación
+                    {{ getReservationRoomTypeLabel(reservation.roomType) }}
+                    <span class="text-sm text-gray-500">
+                      ~ 2 adultos • 1 niño</span
+                    >
+                  </p>
+                  <div class="flex items-center mt-1">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                    >
+                      #{{ $index + 1 }}
+                    </span>
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                    >
+                      {{ getReservationStatusLabel(reservation.status) }}
+                    </span>
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                    >
+                      #{{ reservation.confirmation }}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <div class="grid grid-cols-4 text-sm mt-3">
-                <div>
-                  <p class="text-gray-500">Check-in</p>
-                  <p class="font-medium text-gray-900">
-                    {{ reservation.dateIn | date }} • 3:00 PM
-                  </p>
-                </div>
-                <div>
-                  <p class="text-gray-500">Check-out</p>
-                  <p class="font-medium text-gray-900">
-                    {{ reservation.dateOut | date }} • 1:00 PM
-                  </p>
-                </div>
-                <div>
-                  <p class="text-gray-500">Duración</p>
-                  <p class="font-medium text-gray-900">3 noches</p>
+              <div>
+                <div class="grid grid-cols-4 text-sm mt-3">
+                  <div>
+                    <p class="text-gray-500">Check-in</p>
+                    <p class="font-medium text-gray-900">
+                      {{ reservation.dateIn | date }} • 3:00 PM
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500">Check-out</p>
+                    <p class="font-medium text-gray-900">
+                      {{ reservation.dateOut | date }} • 1:00 PM
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500">Duración</p>
+                    <p class="font-medium text-gray-900">3 noches</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="mb-auto mt-auto">
-              <p class="text-gray-500">Total de estancia</p>
+              <div class="mb-auto mt-auto">
+                <p class="text-gray-500">Total de estancia</p>
 
-              <p class="text-lg font-bold text-[#F26A44] inline">
-                ${{ reservation.rates.total.toFixed(2) }} MXN
-              </p>
-              <p class="text-xs italic inline text-gray-600">
-                (Impuestos incluidos)
-              </p>
+                <p class="text-lg font-bold text-[#F26A44] inline">
+                  ${{ reservation.rates.total.toFixed(2) }} MXN
+                </p>
+                <p class="text-xs italic inline text-gray-600">
+                  (Impuestos incluidos)
+                </p>
+              </div>
             </div>
           </div>
-        </div>
         }
       </div>
 

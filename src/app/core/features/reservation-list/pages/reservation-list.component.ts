@@ -13,7 +13,7 @@ import { AiAssistantListenerComponent } from '../../../shared/components/ai-assi
   templateUrl: './reservation-list.component.html',
   styleUrl: './reservation-list.component.css',
 })
-export class ReservationListComponent {
+export class ReservationListComponent implements OnInit {
   public reservations: Reservation[];
   public displayedReservations: Reservation[];
 
