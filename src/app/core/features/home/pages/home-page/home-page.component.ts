@@ -4,7 +4,6 @@ import { AiBubbleComponent } from '../../components/ai-bubble/ai-bubble/ai-bubbl
 import { DEFAULT_ORB_SUGGESTIONS } from '../../../../shared/utils/constants';
 import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
-import { TranscriptionService } from '../../../../services/transcription-service';
 import { IntentService } from '../../../../services/intent.service';
 import { AIModelService } from '../../../../services/ai-model.service';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +31,6 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {}
 
   constructor(
-    private transcriptionService: TranscriptionService,
     private intentService: IntentService,
     private aiModelService: AIModelService,
   ) {
@@ -51,7 +49,7 @@ export class HomePageComponent implements OnInit {
 
     if (intent) {
       console.log('Classified intent using regex:', intent);
-      this.transcriptionService.emitIntent(intent);
+      this.intentService.navigateBasedOnIntent(intent);
       return;
     }
 
@@ -59,7 +57,7 @@ export class HomePageComponent implements OnInit {
     this.aiModelService.sendTextToModel(transcript).subscribe({
       next: (response: any) => {
         console.log('Received intent from AI model:', response);
-        this.transcriptionService.emitIntent({
+        this.intentService.navigateBasedOnIntent({
           entities: response.result.entities,
           intent: response.result.intent,
           text: response.result.text,
@@ -80,14 +78,14 @@ export class HomePageComponent implements OnInit {
     );
     if (intent) {
       console.log('Classified intent using regex:', intent);
-      this.intentService.routeBasedOnIntent(intent);
+      this.intentService.navigateBasedOnIntent(intent);
       return;
     }
 
     this.aiModelService.sendTextToModel(this.customText).subscribe({
       next: (response: any) => {
         console.log('Received intent from AI model:', response);
-        this.intentService.routeBasedOnIntent({
+        this.intentService.navigateBasedOnIntent({
           entities: response.result.entities,
           intent: response.result.intent,
           text: response.result.text,

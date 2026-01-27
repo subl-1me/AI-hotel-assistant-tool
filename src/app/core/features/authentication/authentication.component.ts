@@ -32,6 +32,10 @@ export class AuthenticationComponent implements OnInit {
       .getReservationByConfirmationNumber(this.confirmationNumber)
       .subscribe({
         next: (reservation) => {
+          if (!reservation) {
+            return;
+          }
+
           const email = reservation.g_email || '';
           // Simple obfuscation: show only the first letter and domain
           const [localPart, domain] = email.split('@');
