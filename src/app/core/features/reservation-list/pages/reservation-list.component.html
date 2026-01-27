@@ -56,7 +56,8 @@
         @for (reservation of displayedReservations; track $index) {
           <!-- Reservación 1 - Confirmada -->
           <div
-            class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+            class="reservation-card confirmed bg-white rounded-xl shadow-lg border border-gray-100 p-6 cursor-pointer hover:shadow-xl transition duration-150"
+            (click)="toggleSelectedReservation(reservation)"
           >
             <div class="grid grid-cols-3 gap-4 text-sm">
               <div>

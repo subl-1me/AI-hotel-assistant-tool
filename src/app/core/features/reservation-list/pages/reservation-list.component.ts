@@ -4,8 +4,12 @@ import { ReservationService } from '../../../services/sqlite-testing/reservation
 import Reservation from '../../../models/Reservation';
 import { DatePipe } from '@angular/common';
 import Rate from '../../../models/Rate';
-import { RESERVATION_STATUES } from '../../../shared/utils/constants';
+import {
+  IntentKeys,
+  RESERVATION_STATUES,
+} from '../../../shared/utils/constants';
 import { AiAssistantListenerComponent } from '../../../shared/components/ai-assistant-listener/ai-assistant-listener.component';
+import { IntentService } from '../../../services/intent.service';
 
 @Component({
   selector: 'app-reservation-list',
@@ -16,13 +20,16 @@ import { AiAssistantListenerComponent } from '../../../shared/components/ai-assi
 export class ReservationListComponent implements OnInit {
   public reservations: Reservation[];
   public displayedReservations: Reservation[];
+  public selectedReservations: Reservation[];
 
   constructor(
     private activatedRouter: ActivatedRoute,
     private reservationService: ReservationService,
+    private intentService: IntentService,
   ) {
     this.reservations = [];
     this.displayedReservations = [];
+    this.selectedReservations = [];
   }
 
   ngOnInit(): void {
@@ -41,6 +48,37 @@ export class ReservationListComponent implements OnInit {
     return (
       RESERVATION_STATUES[status as keyof typeof RESERVATION_STATUES] || status
     );
+  }
+
+  public toggleSelectedReservation(reservation: Reservation): void {
+    const selectedReservation = this.displayedReservations.find(
+      (rsrv) => reservation.id === rsrv.id,
+    );
+
+    if (this.selectedReservations.includes(selectedReservation!)) {
+      this.selectedReservations = this.selectedReservations.filter(
+        (rsrv) => rsrv.id !== selectedReservation!.id,
+      );
+      return;
+    }
+
+    if (!selectedReservation) {
+      return;
+    }
+    this.selectedReservations.push(selectedReservation);
+    this.intentService.navigateBasedOnIntent({
+      intent: IntentKeys.AUTHENTICATE,
+      entities: [
+        {
+          end: 0,
+          label: 'CONFIRMATION_NUMBER',
+          start: selectedReservation.confirmation.length,
+          text: selectedReservation.confirmation,
+        },
+      ],
+      intent_confidence: 1,
+      text: '',
+    });
   }
 
   public getReservationRoomTypeLabel(roomType: string): string {
