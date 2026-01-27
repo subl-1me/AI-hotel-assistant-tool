@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AiAssistantListenerComponent } from '../../shared/components/ai-assistant-listener/ai-assistant-listener.component';
 import { ActivatedRoute } from '@angular/router';
-import Reservation from '../../models/Reservation';
 import { ReservationService } from '../../services/sqlite-testing/reservation.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-authentication',
-  imports: [AiAssistantListenerComponent],
+  imports: [AiAssistantListenerComponent, NgIf],
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css',
 })
@@ -17,6 +17,7 @@ export class AuthenticationComponent implements OnInit {
   ) {}
   public confirmationNumber: string = '';
   public userEmail: string = '';
+  public isLoading: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.confirmationNumber =
@@ -28,14 +29,16 @@ export class AuthenticationComponent implements OnInit {
   private async loadReservation(): Promise<void> {
     if (!this.confirmationNumber) return;
 
+    this.isLoading = true;
     this.reservationService
       .getReservationByConfirmationNumber(this.confirmationNumber)
       .subscribe({
         next: (reservation) => {
           if (!reservation) {
+            this.isLoading = false;
             return;
           }
-
+          this.isLoading = false;
           const email = reservation.g_email || '';
           // Simple obfuscation: show only the first letter and domain
           const [localPart, domain] = email.split('@');
