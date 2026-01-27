@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './core/features/home/pages/home-page/home-page.component';
 import { ReservationListComponent } from './core/features/reservation-list/pages/reservation-list.component';
+import { AuthenticationComponent } from './core/features/authentication/authentication.component';
 
 export const routes: Routes = [
   {
@@ -10,5 +11,9 @@ export const routes: Routes = [
   {
     path: 'reservation-list',
     component: ReservationListComponent,
+  },
+  {
+    path: 'authentication',
+    component: AuthenticationComponent,
   },
 ];

@@ -6,7 +6,6 @@ import {
   IntentKeys,
 } from '../shared/utils/constants';
 import Intent from '../models/Intent';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class IntentRoutingService {
   routeBasedOnIntent(intentObj: Intent): void {
     // navigate based on intent
     const validIntent = Object.values(IntentKeys).find(
-      (item) => intentObj.intent === item
+      (item) => intentObj.intent === item,
     );
 
     const { entities, intent, intent_confidence, text } = intentObj;
@@ -31,7 +30,7 @@ export class IntentRoutingService {
 
         const params: any = {};
         const includesGuestName = entities.find(
-          (entity) => entity.label === EntityNames.GUEST_NAME
+          (entity) => entity.label === EntityNames.GUEST_NAME,
         );
 
         if (includesGuestName) {
@@ -42,7 +41,15 @@ export class IntentRoutingService {
         this.router.navigate([`${url}`], {
           queryParams: params,
         });
-
+        break;
+      case IntentKeys.AUTHENTICATE:
+        this.router.navigate(['/authentication'], {
+          queryParams: {
+            confirmation:
+              entities.find((entity) => entity.label === 'CONFIRMATION_NUMBER')
+                ?.text || '',
+          },
+        });
         break;
       default:
         console.log(`No routing defined for intent: ${intent}`);

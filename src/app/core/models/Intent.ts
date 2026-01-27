@@ -5,4 +5,5 @@ export default interface Intent {
   intent: string;
   intent_confidence: number;
   text: string;
+  source?: string;
 }

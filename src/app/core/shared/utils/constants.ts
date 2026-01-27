@@ -21,6 +21,7 @@ export const IntentKeys = {
   SEARCH_RESERVATION: 'SEARCH_RESERVATION',
   MODIFY_RESERVATION: 'MODIFY_RESERVATION',
   CANCEL_RESERVATION: 'CANCEL_RESERVATION',
+  AUTHENTICATE: 'AUTHENTICATE',
 };
 
 export const EntityNames = {
@@ -51,4 +52,5 @@ export const AI_CONTEXT_ROUTES = [
   '/pay-reservation',
   '/modify-reservation',
   '/cancel-reservation',
+  '/authentication',
 ];

@@ -12,7 +12,15 @@ export class ReservationService {
 
   searchByGuestName(names: string): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(
-      `${environment.SQLITE_LOCAL_TESTING_DB}/reservations/search/${names}`
+      `${environment.SQLITE_LOCAL_TESTING_DB}/reservations/search/${names}`,
+    );
+  }
+
+  getReservationByConfirmationNumber(
+    confirmationNumber: string,
+  ): Observable<Reservation> {
+    return this.http.get<Reservation>(
+      `${environment.SQLITE_LOCAL_TESTING_DB}/reservations/${confirmationNumber}`,
     );
   }
 }

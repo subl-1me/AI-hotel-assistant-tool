@@ -13,4 +13,5 @@ export default interface Reservation {
   guest: Guest;
   dateIn: string;
   dateOut: string;
+  g_email?: string; // for sqlite
 }
