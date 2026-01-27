@@ -4,11 +4,12 @@ import { AiBubbleComponent } from '../../components/ai-bubble/ai-bubble/ai-bubbl
 import { DEFAULT_ORB_SUGGESTIONS } from '../../../../shared/utils/constants';
 import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
-import { last, Subscription } from 'rxjs';
+import { last, Subject, Subscription } from 'rxjs';
 import { TranscriptionService } from '../../../../services/transcription-service';
-import { IntentRoutingService } from '../../../../services/intent-routing.service';
+import { IntentRoutingService } from '../../../../services/intent.service';
 import { AIModelService } from '../../../../services/ai-model.service';
 import { FormsModule } from '@angular/forms';
+import Intent from '../../../../models/Intent';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +29,9 @@ export class HomePageComponent implements OnInit {
   public hasTranscription: boolean = false;
   public recievedTranscription: string = '';
   public customText: string = '';
+
+  private intentSubjet = new Subject<Intent>();
+  public intent$ = this.intentSubjet.asObservable();
 
   private subscriptions: Subscription[] = [];
 
@@ -57,12 +61,11 @@ export class HomePageComponent implements OnInit {
     this.hasTranscription = true;
 
     // classify transcription using regex patterns
-    const classification =
-      this.transcriptionService.classifyTranscription(transcript);
+    const intent = this.intentRoutingService.searchForIntent(this.customText);
 
-    if (classification) {
-      console.log('Classified intent using regex:', classification);
-      this.transcriptionService.emitIntent(classification);
+    if (intent) {
+      console.log('Classified intent using regex:', intent);
+      this.transcriptionService.emitIntent(intent);
       return;
     }
 
@@ -86,12 +89,10 @@ export class HomePageComponent implements OnInit {
   public onCustomText(): void {
     if (this.customText.trim() === '') return;
 
-    const classifiation = this.transcriptionService.classifyTranscription(
-      this.customText,
-    );
-    if (classifiation) {
-      console.log('Classified intent using regex:', classifiation);
-      this.transcriptionService.emitIntent(classifiation);
+    const intent = this.intentRoutingService.searchForIntent(this.customText);
+    if (intent) {
+      console.log('Classified intent using regex:', intent);
+      this.intentRoutingService.routeBasedOnIntent(intent);
       return;
     }
 

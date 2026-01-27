@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IntentRoutingService } from './intent-routing.service';
+import { IntentRoutingService } from './intent.service';
 
 describe('IntentRoutingService', () => {
   let service: IntentRoutingService;
