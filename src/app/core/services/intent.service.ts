@@ -12,7 +12,7 @@ import Entity from '../models/Entity';
 @Injectable({
   providedIn: 'root',
 })
-export class IntentRoutingService {
+export class IntentService {
   constructor(private router: Router) {}
 
   public routeBasedOnIntent(intentObj: Intent): void {

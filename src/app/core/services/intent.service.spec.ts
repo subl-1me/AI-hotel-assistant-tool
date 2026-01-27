@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IntentRoutingService } from './intent.service';
+import { IntentService } from './intent.service';
 
 describe('IntentRoutingService', () => {
-  let service: IntentRoutingService;
+  let service: IntentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IntentRoutingService);
+    service = TestBed.inject(IntentService);
   });
 
   it('should be created', () => {

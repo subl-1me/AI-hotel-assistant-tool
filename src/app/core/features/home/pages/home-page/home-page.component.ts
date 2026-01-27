@@ -4,9 +4,8 @@ import { AiBubbleComponent } from '../../components/ai-bubble/ai-bubble/ai-bubbl
 import { DEFAULT_ORB_SUGGESTIONS } from '../../../../shared/utils/constants';
 import { NgIf } from '@angular/common';
 import { AudioRecorderComponent } from '../../../../shared/components/audio-recorder/audio-recorder.component';
-import { last, Subject, Subscription } from 'rxjs';
 import { TranscriptionService } from '../../../../services/transcription-service';
-import { IntentRoutingService } from '../../../../services/intent.service';
+import { IntentService } from '../../../../services/intent.service';
 import { AIModelService } from '../../../../services/ai-model.service';
 import { FormsModule } from '@angular/forms';
 import Intent from '../../../../models/Intent';
@@ -30,24 +29,11 @@ export class HomePageComponent implements OnInit {
   public recievedTranscription: string = '';
   public customText: string = '';
 
-  private intentSubjet = new Subject<Intent>();
-  public intent$ = this.intentSubjet.asObservable();
-
-  private subscriptions: Subscription[] = [];
-
-  ngOnInit(): void {
-    this.subscriptions.push(
-      this.transcriptionService.notification$.subscribe((intent) => {
-        this.hasTranscription = true;
-        this.recievedTranscription = intent.text;
-        this.intentRoutingService.routeBasedOnIntent(intent);
-      }),
-    );
-  }
+  ngOnInit(): void {}
 
   constructor(
     private transcriptionService: TranscriptionService,
-    private intentRoutingService: IntentRoutingService,
+    private intentService: IntentService,
     private aiModelService: AIModelService,
   ) {
     this.isStarted = true;
@@ -61,7 +47,7 @@ export class HomePageComponent implements OnInit {
     this.hasTranscription = true;
 
     // classify transcription using regex patterns
-    const intent = this.intentRoutingService.searchForIntent(this.customText);
+    const intent = this.intentService.searchForIntent(this.customText);
 
     if (intent) {
       console.log('Classified intent using regex:', intent);
@@ -89,17 +75,19 @@ export class HomePageComponent implements OnInit {
   public onCustomText(): void {
     if (this.customText.trim() === '') return;
 
-    const intent = this.intentRoutingService.searchForIntent(this.customText);
+    const intent: Intent | null = this.intentService.searchForIntent(
+      this.customText,
+    );
     if (intent) {
       console.log('Classified intent using regex:', intent);
-      this.intentRoutingService.routeBasedOnIntent(intent);
+      this.intentService.routeBasedOnIntent(intent);
       return;
     }
 
     this.aiModelService.sendTextToModel(this.customText).subscribe({
       next: (response: any) => {
         console.log('Received intent from AI model:', response);
-        this.transcriptionService.emitIntent({
+        this.intentService.routeBasedOnIntent({
           entities: response.result.entities,
           intent: response.result.intent,
           text: response.result.text,
