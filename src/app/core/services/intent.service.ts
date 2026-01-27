@@ -15,7 +15,7 @@ import Entity from '../models/Entity';
 export class IntentService {
   constructor(private router: Router) {}
 
-  public routeBasedOnIntent(intentObj: Intent): void {
+  public navigateBasedOnIntent(intentObj: Intent): void {
     // navigate based on intent
     const validIntent = Object.values(IntentKeys).find(
       (item) => intentObj.intent === item,
